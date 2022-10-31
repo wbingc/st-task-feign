@@ -1,0 +1,31 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: feign-client
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8082/eureka
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 30
+
+feign:
+  name: login-service
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+  hystrix:
+    enabled: false
+  url:
+    hello: /api/hello
+    login: /api/auth/login
+    signup: /api/auth/signup
+    fl: /api/auth/fakelogin
+    la: /api/user/all
